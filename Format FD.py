@@ -45,6 +45,7 @@ for drive_letter in range(ord('D'), ord('P') + 1):
         continue
     # os.system(f'robocopy /mir C: {chr(drive_letter)}:')
     os.system(f'robocopy /mir {udf_drives_str}\ {chr(drive_letter)}:\\')
+    os.system(f'{chr(drive_letter)}:\\boot\\bootsect.exe /nt60 {chr(drive_letter)}:')
 
 # for drive_letter in ['E', 'G', 'I', 'K']:
 #     os.system(f'robocopy /mir D: {drive_letter}:')
