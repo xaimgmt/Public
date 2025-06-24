@@ -1,7 +1,8 @@
 
-Source := 'M'
 Run('E:\rufus-4.9.exe -i K:\Wipe_2025.iso')
 WinWaitActive('Rufus', 'Cluster')
+
+Source := 'M'
 loop 2
 {
     WinActivate('Rufus', 'Cluster')
