@@ -1,5 +1,7 @@
 
 Source := 'M'
+Run('E:\rufus-4.9.exe -i K:\Wipe_2025.iso')
+WinWaitActive('Rufus', 'Cluster')
 loop 2
 {
     WinActivate('Rufus', 'Cluster')
@@ -14,6 +16,7 @@ loop 2
     ControlClick('Button14', 'Rufus', 'Cluster') ; START
     Cek_Popup()
 }
+WinMinimizeAll
 Loop 20  ; D sampai X = 20 huruf
 {
     Destination := Chr(Ord("D") + A_Index - 1) ":"
