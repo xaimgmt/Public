@@ -18,6 +18,7 @@ loop 2
     Cek_Popup()
 }
 WinMinimizeAll
+WinClose('Rufus', 'Cluster')
 Loop 20  ; D sampai X = 20 huruf
 {
     Destination := Chr(Ord("D") + A_Index - 1) ":"
