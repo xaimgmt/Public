@@ -1,9 +1,10 @@
 
-Run('E:\rufus-4.9.exe -i K:\Wipe_2025.iso')
+Run('B:\Software\rufus-4.9.exe -i "A:\ISO\Original\WipeOri11 2505 for User.iso" -f NTFS')
 WinWaitActive('Rufus', 'Cluster')
 
-Source := 'M'
-loop 2
+Source := 'W' ; Ganti dengan Drive mount file ISO
+Label := 'WipeOri11 2505 for User'
+loop 10
 {
     WinActivate('Rufus', 'Cluster')
     ControlFocus('ComboBox1', 'Rufus', 'Cluster') ; Device
@@ -11,8 +12,13 @@ loop 2
         Send('{Home}')
     } else {
         Send('{Home}')
+        Sleep(200)
         n := A_Index - 1
-        Send('{Down ' n '}') ; Select device
+        loop n
+        {
+            Send('{Down}') ; Select device
+            Sleep(200)
+        }
     }
     ControlClick('Button14', 'Rufus', 'Cluster') ; START
     Cek_Popup()
@@ -26,7 +32,8 @@ Loop 20  ; D sampai X = 20 huruf
     {
         if (Destination != Source ":")
         {
-            RunWait A_ComSpec " /c ROBOCOPY /MIR " Source ": " Destination
+            RunWait A_ComSpec " /c Label Destination " Label
+            RunWait A_ComSpec " /c ROBOCOPY /MIR " Source ": " Destination, , 'Min'
         }
     }
 }
@@ -45,6 +52,8 @@ Cek_Popup()
         } else if InStr(v1,'Copying ISO') {
             Sleep(10000)
             ControlClick('Button15', 'Rufus', 'Cluster') ; CANCEL
+        } else if WinExist('GB]', 'Another program') {
+            ControlClick('Button3', 'GB]', 'Another program')
         } else if WinExist('Error', 'another process') {
             ControlClick('Button1', 'Error', 'another process')
         } else if WinExist('Rufus', 'WARNING') {
@@ -53,6 +62,9 @@ Cek_Popup()
             ControlClick('Button1', 'Revoked UEFI bootloader detected')
         }
         Sleep(1000) ; Loop lebih stabil
+        if (A_Index == 60) {
+            return
+        }
     }
 }
 
