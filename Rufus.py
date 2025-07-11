@@ -36,6 +36,9 @@ def WinGetColor(nama_jendela, koordinat_X, koordinat_Y, kode_warna):
     else:
         raise Exception(f"Jendela dengan nama '{nama_jendela}' tidak ditemukan.")
 
+os.system('start "" /min D:\\rufus-4.9.exe -i D:\\Wipe_2025.iso -f NTFS')
+s(5)
+
 versi_rufus = 'Rufus 4.9.2256'
 for i in range(2):
     print(i + 1, end=' ')
@@ -58,4 +61,6 @@ for i in range(2):
 
         time.sleep(1)
 
-    
+s(3); os.system('taskkill /f /im rufus-4.9.exe')
+sys.exit()
+
