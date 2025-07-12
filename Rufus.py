@@ -36,6 +36,19 @@ def WinGetColor(nama_jendela, koordinat_X, koordinat_Y, kode_warna):
     else:
         raise Exception(f"Jendela dengan nama '{nama_jendela}' tidak ditemukan.")
 
+# ====================================================================================================
+
+s(0.5); pyautogui.hotkey('win', 'left')
+s(0.5); pyautogui.hotkey('esc')
+s(0.5); pyautogui.hotkey('win', 'home')
+
+s(0.5); pyautogui.hotkey('win', 'e')
+s(0.5); pyautogui.hotkey('win', 'right')
+s(0.5); pyautogui.hotkey('esc')
+s(0.5); pyautogui.hotkey('alt', 'd')
+s(0.5); pyautogui.typewrite('This PC')
+s(0.5); pyautogui.hotkey('enter')
+
 os.system('start "" /min D:\\rufus-4.9.exe -i D:\\Wipe_2025.iso -f NTFS')
 s(5)
 
@@ -71,12 +84,11 @@ for drive_letter in range(ord('E'), ord('Z') + 1):
     if os.path.exists(f"{chr(drive_letter)}:\\WINSETUP\\Win11\\Windows11.iso"):
         Src = chr(drive_letter)
 
-print(Src)
 for drive_letter in range(ord('E'), ord('Z') + 1):
     if os.path.exists(f"{chr(drive_letter)}:\\WINSETUP"):
         Des = chr(drive_letter)
         if Des != Src:
-            os.system(f'robocopy /mir {Src}:\\ {Des}:\\')
+            os.system(f'color e & robocopy /mir {Src}:\\ {Des}:\\')
 
 sys.exit()
 
