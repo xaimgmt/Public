@@ -62,5 +62,21 @@ for i in range(2):
         time.sleep(1)
 
 s(3); os.system('taskkill /f /im rufus-4.9.exe')
+
+for i in range(5):
+    os.system(r"powershell Dismount-DiskImage -ImagePath 'D:\Wipe_2025.iso'")
+
+os.system(r"powershell Mount-DiskImage -ImagePath 'D:\Wipe_2025.iso'")
+for drive_letter in range(ord('E'), ord('Z') + 1):
+    if os.path.exists(f"{chr(drive_letter)}:\\WINSETUP\\Win11\\Windows11.iso"):
+        Src = chr(drive_letter)
+
+print(Src)
+for drive_letter in range(ord('E'), ord('Z') + 1):
+    if os.path.exists(f"{chr(drive_letter)}:\\WINSETUP"):
+        Des = chr(drive_letter)
+        if Des != Src:
+            os.system(f'robocopy /mir {Src}:\\ {Des}:\\')
+
 sys.exit()
 
