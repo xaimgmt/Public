@@ -88,7 +88,7 @@ for drive_letter in range(ord('E'), ord('Z') + 1):
     if os.path.exists(f"{chr(drive_letter)}:\\WINSETUP"):
         Des = chr(drive_letter)
         if Des != Src:
-            os.system(f'color e & robocopy /mir {Src}:\\ {Des}:\\')
+            os.system(f'title Refill FD Wipe Ori - Src {Src}: & color e & robocopy /mir {Src}:\\ {Des}:\\')
 
 sys.exit()
 
